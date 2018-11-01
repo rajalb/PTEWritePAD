@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <title>Writing</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script language='Javascript'>
+        $(document).ready(function () {
+            $("#taEssay").on('keydown', function (e) {
+                var words = $.trim(this.value).length ? this.value.match(/\S+/g).length : 0;
+                $('#display_count').text(words);
+            });
+        });
+
+        var timer = new Timer();
+        timer.start();
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#basicUsage').html(timer.getTimeValues().toString(['minutes', 'seconds']));
+        });
+
+
+        function EssayClear() {
+            document.getElementById("taEssay").value = "";
+            ("0")
+            $('#display_count').text("0")
+        }
+    </script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: lightblue;
+            padding-left : 5px;
+            padding-right:5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 85%;
+            padding: 5px;
+            
+            border: 1px solid gray;
+            /* font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: larger; */
+        }
+
+        input {
+            /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 mb-12 text-center">
+                <h2>PTE Writing Pad</h2>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 mb-12 text-center">
+                Time:<span id="basicUsage">00:00</span>
+                <input type="button" value="Refresh time" onclick="history.go(0)" class="btn btn-Primary btn-sm" /> &nbsp;
+                
+                <span id="display_count">0</span> word(s).
+                <input type="button" onclick="EssayClear();" value="Clear Essay" class="btn btn-Success btn-sm"></input>
+    
+            </div>
+        </div>
+        <br/>
+    </div>
+    <div>
+        <textarea placeholder="Enter Summery/Essay" spellcheck="false" id="taEssay" class="rounded"></textarea>
+    </div>
+</body>
+
+</html>
